@@ -1,0 +1,347 @@
+/* Basic Reset and Font */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Georgia', serif; /* A more classic, writerly font */
+    line-height: 1.7;
+    background-color: #f8f8f8; /* Lighter background */
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Container and Sections */
+.content-section {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px; /* Slightly more padding */
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Softer shadow */
+    border-radius: 10px;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif; /* Elegant heading font */
+    color: #4a4a4a;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 2.2em;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Header and Navigation */
+header {
+    background-color: #3d3b41; /* Darker, sophisticated header */
+    color: #fff;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.logo-img {
+    height: 40px; /* Adjust as needed */
+    margin-right: 10px;
+    filter: invert(100%); /* Makes the purple logo white against dark background */
+}
+
+/* Specific styling for 'FaeWrites' text in the logo for future-proofing */
+.logo span {
+    color: #9b59b6; /* Purple for FaeWrites text, if you remove the image */
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+nav ul a:hover {
+    color: #9b59b6; /* Purple hover */
+}
+
+/* Hero Section */
+.hero {
+    height: 80vh; /* Taller hero */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('hero-bg.jpg') no-repeat center center/cover; /* Pen on book image */
+    color: #fff;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay for readability */
+}
+
+.hero-content {
+    z-index: 2;
+    padding: 20px;
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: 3.8rem;
+    margin-bottom: 0.8rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+}
+
+.cta-button {
+    background-color: #9b59b6; /* Purple CTA button */
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 30px; /* More rounded */
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.cta-button:hover {
+    background-color: #8e44ad; /* Darker purple on hover */
+    transform: translateY(-2px);
+}
+
+/* Featured Work Grid */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.work-item {
+    background-color: #fdfdfd;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.work-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.work-item img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.work-item h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.work-item p {
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    display: inline-block;
+    color: #9b59b6;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px solid #9b59b6;
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.read-more:hover {
+    color: #7b3a96;
+    border-color: #7b3a96;
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    flex-direction: column; /* Stack on smaller screens */
+    align-items: center;
+    gap: 30px;
+    text-align: center; /* Center text by default */
+}
+
+.about-content > div { /* Target the text container */
+    text-align: left; /* Align text left inside its container */
+}
+
+.about-photo {
+    width: 250px; /* Larger photo */
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 5px solid #eee; /* Subtle border */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Contact Form */
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 30px auto 0;
+}
+
+#contact-form label {
+    font-weight: bold;
+    color: #555;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+    border-color: #9b59b6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(155, 89, 182, 0.2);
+}
+
+#contact-form button {
+    background-color: #9b59b6;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+#contact-form button:hover {
+    background-color: #8e44ad;
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #3d3b41;
+    color: #e0e0e0;
+    margin-top: 50px;
+}
+
+.social-links {
+    margin-bottom: 15px;
+}
+
+.social-links a {
+    color: #e0e0e0;
+    font-size: 1.8em;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.social-links a:hover {
+    color: #9b59b6;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .about-content {
+        flex-direction: row; /* Side-by-side on larger screens */
+        text-align: left;
+    }
+    .about-content > div {
+        text-align: left;
+    }
+    .about-photo {
+        margin-right: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        text-align: center;
+    }
+    nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    nav ul li {
+        margin: 5px 10px;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+    .content-section {
+        margin: 20px 15px;
+        padding: 20px;
+    }
+    .work-grid {
+        grid-template-columns: 1fr;
+    }
+}
