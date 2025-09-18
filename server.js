@@ -1,45 +1,50 @@
-// server.js
-require('dotenv').config();
-const express = require('express');
-const nodemailer = require('nodemailer');
-const cors = require('cors');
-const app = express();
-const port = 3000;
+const express = require("express");
+const path = require("path");
+const nodemailer = require("nodemailer");
+const dotenv = require("dotenv");
 
-app.use(cors());
+dotenv.config();
+
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.use(express.static(path.join(__dirname, '..')));
 app.use(express.json());
 
-// This is where your email and app password are configured
-const transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
+// Main Route to serve the index.html file
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
 });
 
-app.post('/send-email', (req, res) => {
-    const { name, email, message } = req.body;
-    const mailOptions = {
-        from: email,
-        to: 'faewrites4you@gmail.com',
-        subject: `New Message from FaeWrites Contact Form by ${name}`,
-        html: `<p>You have a new message from your website contact form.</p>
-               <p><strong>Name:</strong> ${name}</p>
-               <p><strong>Email:</strong> ${email}</p>
-               <p><strong>Message:</strong><br>${message}</p>`
-    };
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error('Error sending email:', error);
-            res.status(500).send('Error: Could not send your message.');
-        } else {
-            console.log('Email sent:', info.response);
-            res.status(200).send('Message sent successfully!');
-        }
-    });
+// Email sending route
+app.post("/send-email", async (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: "faewrites4you@gmail.com",
+    subject: `Message from ${name}: ${subject}`,
+    text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully!");
+    res.status(200).send("Email sent successfully!");
+  } catch (error) {
+    console.error("Error sending email:", error);
+    res.status(500).send("Error sending email.");
+  }
 });
 
 app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
