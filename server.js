@@ -8,12 +8,12 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(__dirname));
 app.use(express.json());
 
 // Main Route to serve the index.html file
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Email sending route
@@ -31,8 +31,8 @@ app.post("/send-email", async (req, res) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: "faewrites4you@gmail.com",
-    subject: `Message from ${name}: ${subject}`,
-    text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+    subject: Message from ${name}: ${subject},
+    text: Name: ${name}\nEmail: ${email}\n\nMessage:\n${message},
   };
 
   try {
@@ -46,5 +46,5 @@ app.post("/send-email", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(Server is running on port ${port});
 });
