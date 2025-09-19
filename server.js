@@ -8,6 +8,7 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// This serves your static files from the same directory
 app.use(express.static(__dirname));
 app.use(express.json());
 
